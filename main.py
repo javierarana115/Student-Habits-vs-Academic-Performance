@@ -57,6 +57,8 @@ sns.heatmap(correlation, cmap='coolwarm', annot=True)
 plt.title('Correlation Heatmap for different factors')
 plt.show()
 
+
+# Splitting test and train data
 X = encoded_df.drop(columns=['exam_score'])
 y = encoded_df['exam_score']
 
@@ -67,6 +69,7 @@ print(f"Test features: {X_test.shape}")
 print(f"Training target: {y_train.shape}")
 print(f"Test target: {y_test.shape}")
 
+# Using LineearRegression sklearn model to predict test scores
 model = LinearRegression()
 model.fit(X_train, y_train)
 
@@ -79,7 +82,7 @@ importance = pd.DataFrame({
 
 print(importance.head(3))
 
-
+# Display predictions from LinearRegression model
 plt.figure(figsize=(10, 6))
 plt.scatter(y_test, y_pred, alpha=0.5)
 plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'k--', lw=3, label='Linear Regression Prediction')
